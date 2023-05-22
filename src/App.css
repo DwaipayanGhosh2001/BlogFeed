@@ -1,0 +1,63 @@
+body{
+  margin:0;
+  padding: 0;
+}
+
+.bg-theme{
+  background-color: antiquewhite;
+  min-height: 100vh;
+}
+
+.inputGroup {
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+.inputGroup input {
+  font-size: 100%;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.inputGroup :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  background-color: white;
+  padding: 0 !important;
+}
+.zoom:hover{
+  scale: 1.15;
+}
+.active{
+  color: #D22B2B;
+}
+.ql-editor{
+  min-height: 30vh;
+}
+.form-control {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.listimg{
+  max-width: 300px;
+  max-height: 300px;
+}
+/* @media screen and (max-width: 480px) {
+.smallscreenwidth {
+  width: 100% !important;
+}
+  } */
