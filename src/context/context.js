@@ -3,7 +3,7 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { auth, database } from "../Firebase";
 import { useNavigate } from "react-router-dom";
 import { StoreUser } from "../Config/StoreData";
-import {  get, ref } from "firebase/database";
+import {  get, ref, update } from "firebase/database";
 import { toast } from "react-toastify";
 
 const userContext = createContext();
@@ -16,7 +16,9 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const[isUpdate, setIsUpdate] = useState(false);
   const[blogs, setBlogs] =useState(null);
+  const[selectBlog, setSelectBlog] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -115,6 +117,12 @@ setBlogs(Object.entries(data))
 useEffect(()=> {
     displayBlog();
 },[token])
+
+function updatebtnClick (blogid) {
+  setIsUpdate(true)
+  setSelectBlog(blogid)
+}
+
   const value = {
     login,
     register,
@@ -124,7 +132,11 @@ useEffect(()=> {
     logout,
     setUser,
     blogs, 
-    displayBlog
+    displayBlog, 
+    updatebtnClick,
+    isUpdate,
+    setIsUpdate,
+    selectBlog
     //loader
   };
 
