@@ -42,7 +42,9 @@ return(
                         </p>
             </div>
        
-                        <p>{props.meta} <span className="text-decoration-underline" style={{cursor: "pointer"}}> <i> Read more... </i></span></p>
+                        <p>{props.meta} <span className="text-decoration-underline" style={{cursor: "pointer"}}> <i>
+    <Link to={`/blog-details/${props.blogkey}`} className="text-dark text-decoration-none">Read more...</Link>
+  </i> </span></p>
             
         </CardBody>
         </div>

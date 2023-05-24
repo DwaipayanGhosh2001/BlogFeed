@@ -18,9 +18,10 @@ import {
 } from "reactstrap";
 import { TbNotes } from "react-icons/tb";
 import {AiFillCaretDown} from "react-icons/ai"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserRecord } from "../context/context";
 function Header() {
+  const navigate= useNavigate();
      const {user, token, logout} = useUserRecord();
     const [isOpen, setIsOpen] = useState(false);
     const [ishover, setIshover] = useState(false);
@@ -85,7 +86,7 @@ function Header() {
                 </DropdownToggle>
                 <DropdownMenu end>
                   {/* <DropdownItem>Profile</DropdownItem> */}
-                  <DropdownItem onClick={logout} >Logout</DropdownItem>
+                  <DropdownItem onClick={() => {logout(); navigate("/")}} >Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               </div>
