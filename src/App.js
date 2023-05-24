@@ -10,6 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Landing";
 import UserBlogs from "./pages/MyBlogs";
 import AddBlog from "./pages/AddBlog";
+import ViewBlog from "./pages/ViewBlog";
 const App = () =>
 {
 return(
@@ -22,6 +23,7 @@ return(
       <Route path="/auth" element={<Sign/>}/>
       <Route path="/my-blogs" element= {<UserBlogs/>}/>
       <Route path="/add-blog" element={<AddBlog/>}/>
+      <Route path="/blog-details/:blogid" element={<ViewBlog/>}/>
       
      </Routes>
     </UserContextProvider>

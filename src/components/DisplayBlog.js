@@ -15,7 +15,7 @@ const Displayblog = (props) => {
 return(
     <Card className="d-flex flex-md-row bg-transparent rounded  border border-dark border-4 mx-auto mx-md-0">
     
-        <img src={props.image} alt="blog-image" className="rounded border border-dark listimg mx-auto mx-md-0 mt-2 mt-md-0" />
+        <img src={props.image} alt="blog-image" className=" border border-white border-2  rounded-end listimg mx-auto mx-md-0 mt-2 mt-md-0" />
         <div className="ms-sm-5 my-md-auto">
         <CardTitle className=" fw-bold text-dark mt-2 fs-5 "
                         style={{ fontFamily: "serif" }}>
@@ -24,7 +24,7 @@ return(
         <CardBody className="p-0">
             <div className="d-flex justify-content-between ">
               <div className="me-5">
-              <p className="fw-bold text-uppercase pt-1" style={{fontSize: "12px"}}>-by {props.author} posted on {props.date}</p>
+              <p className="fw-bold text-uppercase pt-1" style={{fontSize: "12px"}}>-by <i className="text-blue"> {props.author}</i> posted on {props.date}</p>
               </div>  
             <p className="fw-bold ms-5">
                           Genre: 

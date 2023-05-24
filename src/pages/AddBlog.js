@@ -176,7 +176,8 @@ const current = new Date();
       toast("Something went wrong", { type: "error" });
     }
   };
-  console.log(blogs)
+
+ 
   return (
     <Container className="  w-75 pb-5">
       <div className="pb-5 d-flex justify-content-between">
@@ -207,12 +208,14 @@ const current = new Date();
           required
         />
         <h5 className="ms-md-3 py-3">Write your blog here</h5>
-        <ReactQuill
+         <ReactQuill
           ref={blogRef}
-           value={isUpdate && updateData ? updateData.blog_data : ""}
+            defaultValue={isUpdate && updateData ? updateData.blog_data : ''}
           required
           className="bg-white border-dark border border-1"
-        />
+        
+        /> 
+
         <div className="d-sm-flex  my-4">
           <div className=" w-100">
             <Card className="border border-4 border-white rounded bg-transparent ms-md-3 p-3 ">

@@ -24,10 +24,10 @@ function Header() {
      const {user, token, logout} = useUserRecord();
     const [isOpen, setIsOpen] = useState(false);
     const [ishover, setIshover] = useState(false);
-    const [active,setActive] = useState(1);
+    const [active,setActive] = useState(0);
 
     const navActive = (id) => {
-      setActive(id);
+      setActive(0);
     }
     const onHover = () => {
       setIshover(true);
@@ -59,9 +59,9 @@ function Header() {
               <NavItem>
                 <NavLink tag={Link} to="/"className={`ms-md-5 pr-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 1 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(1)}>Home</NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink tag={Link} className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 2 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(2)}>Category</NavLink>
-              </NavItem>
+              </NavItem> */}
               {token && (
                 <>
                  <NavItem>
