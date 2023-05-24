@@ -73,6 +73,7 @@ const clear = () => {
   if(isUpdate)
   {
     setIsUpdate(false);
+
 navigate("/my-blogs")
   }
 titleRef.current.value=null;
@@ -81,6 +82,8 @@ metaRef.current.value=null;
 setDownloadUrl(null);
 setClick([]);
 }
+
+
 const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const navigate= useNavigate();
@@ -90,14 +93,15 @@ const current = new Date();
       const blog = removeTags(blogRef.current.value);
       const image = downloadUrl!== null ? downloadUrl: updateData.imageURL;
       const meta = metaRef.current.value;
-
+      console.log(isUpdate)
     if (isUpdate) {
-      UpdateBlogDetails( title, blog, image, meta, click, date, navigate, selectBlog)
-      displayBlog();
+       UpdateBlogDetails( title, blog, image, meta, date, navigate, selectBlog)
+       displayBlog();
+      setIsUpdate(false);
     } else {
       
       if (token && blog) {
-        BlogDetails(token, title, blog, image, meta, click, date, navigate);
+        BlogDetails(token, title, blog, image, meta, click, date, user.username,navigate);
         displayBlog();
       } else {
         alert("Incomplete details of the Blog");
@@ -109,7 +113,6 @@ const current = new Date();
   const removeTags = (str) => {
     return str.replace(/<[^>]+>/g, "");
   };
- console.log(updateData)
   const imagePicker = async (e) => {
     // TODO: upload image and set D-URL to state
     try {
@@ -173,6 +176,7 @@ const current = new Date();
       toast("Something went wrong", { type: "error" });
     }
   };
+  console.log(blogs)
   return (
     <Container className="  w-75 pb-5">
       <div className="pb-5 d-flex justify-content-between">
@@ -188,7 +192,7 @@ const current = new Date();
         <Input
           type="text"
           placeholder="Title of the Blog"
-            defaultValue={updateData && updateData.blog_title}
+            defaultValue={isUpdate && updateData ? updateData.blog_title : ""}
           className="py-2 border-dark border border-1"
           innerRef={titleRef}
           required
@@ -198,14 +202,14 @@ const current = new Date();
           type="textarea"
           placeholder="Write a short meta description for your blog"
           className="py-2 border-dark border border-1"
-           defaultValue={updateData && updateData.meta_tag}
+           defaultValue={isUpdate && updateData ? updateData.meta_tag :""}
           innerRef={metaRef}
           required
         />
         <h5 className="ms-md-3 py-3">Write your blog here</h5>
         <ReactQuill
           ref={blogRef}
-           value={updateData && updateData.blog_data}
+           value={isUpdate && updateData ? updateData.blog_data : ""}
           required
           className="bg-white border-dark border border-1"
         />
@@ -222,7 +226,7 @@ const current = new Date();
                   <div>
                     <label>
                       <img
-                         src={updateData ? updateData.imageURL : downloadUrl}
+                         src={isUpdate && updateData ? updateData.imageURL : downloadUrl}
                         alt=""
                         className="border border-4 border-dark rounded"
                         style={{ width: "200px", height: "120px" }}
@@ -243,7 +247,7 @@ const current = new Date();
               </CardBody>
             </Card>
           </div>
-          <div className="  w-100 mt-4 mt-sm-0">
+          <div className={`  w-100 mt-4 mt-sm-0 ${isUpdate && 'd-none'}`}>
             <Card className="border border-4 border-white rounded bg-transparent ms-md-3 p-3 ">
               <CardTitle className="fs-5 fw-bold text-center">Genre</CardTitle>
               <CardBody className=" d-flex flex-wrap">
@@ -259,11 +263,11 @@ const current = new Date();
                     </FormGroup>
                   </div>
                 ))}
-                 {/* {updateData && (
+                  {/* {updateData && (
                   <div>
                     <p className="fw-bold">Selected Genre:
                     <i className="fw-normal ms-3">
-                            {updateData.genre.map((genre, index) => (
+                            {updateData.genre &&  updateData.genre.map((genre, index) => (
                               <span key={index}>
                                 {genre}
                                 {index + 1 === updateData.genre.length
@@ -274,8 +278,8 @@ const current = new Date();
                           </i>
                     </p>
                   </div>
-                )}  */}
-              </CardBody>
+                )}             */}
+                     </CardBody>
             </Card>
           </div>
         </div>

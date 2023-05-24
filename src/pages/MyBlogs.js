@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import { useUserRecord } from "../context/context";
 import Displayblog from "../components/DisplayBlog";
+import { checkCollectionExists } from "../Config/StoreData";
 const UserBlogs = () => {
   const [userblogs, setUserBlogs] = useState([]);
   const { blogs, token, user } = useUserRecord();
@@ -27,6 +28,7 @@ const UserBlogs = () => {
     fetchUserBlogs();
   }, [blogs, token]);
 
+  
   return (
     <div>
       <Container className="d-flex justify-content-between">
@@ -49,7 +51,7 @@ const UserBlogs = () => {
                       genre={userblogs[index][1]?.genre}
                       date={userblogs[index][1]?.date}
                       blogkey={userblogs[index][0]}
-                      author={user.username}
+                      author={userblogs[index][1]?.author}
                     />
                   </ListGroupItem>
                 ))}
@@ -59,9 +61,14 @@ const UserBlogs = () => {
         </div>
       ) : (
         <>
-          <div className="d-flex justify-content-center mt-5 pt-5">
+        {blogs === null ? (
+           <h1 className={`text-center`}>No blogs available</h1>
+        ): (<>
+         <div className="d-flex justify-content-center mt-5 pt-5">
             <Spinner>Loading...</Spinner>
           </div>
+        </>)}
+         
         </>
       )}
 

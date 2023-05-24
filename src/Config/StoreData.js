@@ -1,4 +1,4 @@
-import { ref, set, update } from "firebase/database";
+import { ref, remove, set, update, get } from "firebase/database";
 import { database } from "../Firebase";
 import { v4 } from "uuid";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ export async function StoreUser (uid, name, email) {
 
 }
 
-export async function BlogDetails (uid, title, blog, image, meta ,genre, date, navigate) {
+export async function BlogDetails (uid, title, blog, image, meta ,genre, date, author , navigate) {
    
     try {
         await set(ref(database, `blogs/`+v4()), {
@@ -26,6 +26,7 @@ export async function BlogDetails (uid, title, blog, image, meta ,genre, date, n
             meta_tag: meta,
             genre:genre,
             date:date,
+            author: author
         })
 navigate("/my-blogs")
          toast("Blog added successfully", {type: "success"})
@@ -35,8 +36,7 @@ navigate("/my-blogs")
    
 
 }
-export async function UpdateBlogDetails (title, blog, image, meta ,genre, date, navigate, blogid) {
-const {setIsUpdate} = useUserRecord();
+export async function UpdateBlogDetails (title, blog, image, meta , date, navigate, blogid) {
     try {
 
         const updateRef= ref(database, 'blogs/' + blogid)
@@ -48,12 +48,10 @@ const {setIsUpdate} = useUserRecord();
             blog_data:blog,
             imageURL: image,
             meta_tag: meta,
-            genre:genre,
             date:date,
         }
         )
         navigate("/my-blogs")
-        setIsUpdate(false)
          toast("Blog updated successfully", {type: "success"})
         
       } 
@@ -62,3 +60,23 @@ const {setIsUpdate} = useUserRecord();
         toast("Blog Update Failed",{type:"error"})
       }
 }
+
+export async function deleteBlog (blogid) {
+try {
+    const deleteRef = ref(database, 'blogs/' + blogid)
+    await remove(deleteRef)
+    toast("Blog deleted", {type: "success"})
+} catch (error) {
+    toast("Blog deletion failed", {type: "error"})
+}
+}
+// export async function checkCollectionExists(collectionName) {
+//     try {
+//       const collectionRef = ref(database, collectionName);
+//       const dataSnapshot = await get(collectionRef);
+//       return dataSnapshot.exists(); // Returns true if the collection exists and has data
+//     } catch (error) {
+//       console.error('Error checking collection existence:', error);
+//       // Handle the error appropriately
+//     }
+//   }

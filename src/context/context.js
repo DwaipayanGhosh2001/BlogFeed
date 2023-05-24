@@ -110,7 +110,7 @@ setBlogs(Object.entries(data))
 })
 .catch((error) => {
     console.log(error)
-    toast(error.message, { type: "error" }); 
+    // toast(error.message, { type: "error" }); 
 })
 }
 
@@ -122,7 +122,6 @@ function updatebtnClick (blogid) {
   setIsUpdate(true)
   setSelectBlog(blogid)
 }
-
   const value = {
     login,
     register,
