@@ -93,7 +93,7 @@ const ViewBlog = () => {
             <p className=" mt-4 fs-5"> {data.blog_data}</p>
   <div className="d-flex justify-content-between">
   <p className=" fst-italic fs-5">
-              {isLike ? "Liked :": " Like :"}
+              Appreciate this post
              {blogid && (
               <span className="fs-2 ms-5" style={{ cursor: "pointer" }} onClick={toggle} >
                 {isLike.blogid === blogid && isLike.likestatus? <AiFillLike className="text-blue"/> : <AiOutlineLike />} 
