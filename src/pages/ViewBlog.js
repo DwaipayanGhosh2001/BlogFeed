@@ -48,7 +48,7 @@ const ViewBlog = () => {
  console.log(isClick)
   return (
     <Container className="pt-3">
-      {data && (
+      {blogid && (
         <div>
           <h2 className="text-center text-capitalize pb-2">
             {" "}
