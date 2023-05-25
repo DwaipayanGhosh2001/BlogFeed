@@ -48,7 +48,7 @@ const ViewBlog = () => {
  console.log(isClick)
   return (
     <Container className="pt-3">
-      {blogid && (
+      {data ? (
         <div>
           <h2 className="text-center text-capitalize pb-2">
             {" "}
@@ -82,7 +82,7 @@ const ViewBlog = () => {
                     {genre}
                     {index + 1 === data.genre.length ? "" : " | "}
                   </span>
-                ))}
+                ) )}
             </i>
           </p>
 
@@ -100,6 +100,10 @@ const ViewBlog = () => {
           {/* <h3>Comments</h3> */}
 
         </div>
+      ) : (
+        <>
+        <h1>no </h1>
+        </>
       )}
     </Container>
   );

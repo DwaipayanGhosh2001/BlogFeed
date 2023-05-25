@@ -12,11 +12,11 @@ return(
     <div>
  {blogs ?  (
         <Container fluid>
-        <h2 className=" mt-3 mb-3 ">Latest Blog Feed</h2>
+        <h2 className=" mt-3 mb-3 ps-sm-5 ps-2">Latest Blog Feed</h2>
 <Container fluid>
     {blogs.map((item, index) => (
 <ListGroupItem className="my-4  mx-auto wid">
-<Card className="d-flex flex-md-row  rounded  border border-dark border-2 mx-auto mx-md-0 text-white pb-2 pb-sm-0 px-3 px-sm-0" style={{backgroundColor : "rgba(0,0,0,0.5)"}}>
+<Card className="d-flex flex-md-row  rounded  border border-info border-3 mx-auto mx-md-0 text-white pb-2 pb-sm-0 px-3 px-sm-0" style={{backgroundColor : "rgba(0,0,0,0.5)"}}>
     
     <img src={item[1].imageURL} alt="blog-image" title={item[1].blog_title} className=" border border-white border-2 rounded-end landimg mx-auto mx-md-0 mt-2 mt-md-0" />
     <div className="ms-sm-5 my-md-auto mx-auto">
