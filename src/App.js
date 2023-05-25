@@ -18,7 +18,7 @@ const App = () =>
 {
 return(
   <Container fluid className="px-0">
- <ToastContainer position="top-right"/>
+ <ToastContainer position="top-right" autoClose={3000}/>
     <UserContextProvider>
       <div className="bg-theme pb-3">
       <Header/>

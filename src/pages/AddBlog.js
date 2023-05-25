@@ -78,7 +78,7 @@ navigate("/my-blogs")
 
 }
 
-const likeCount = 0;
+const likes= [];
 const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const navigate= useNavigate();
@@ -96,7 +96,7 @@ const current = new Date();
     } else {
       
       if (token && blog) {
-        BlogDetails(token, title, blog, image, meta, click, date, user.username, likeCount, navigate);
+        BlogDetails(token, title, blog, image, meta, click, date, user.username, likes, navigate);
         displayBlog();
       } else {
         alert("Incomplete details of the Blog");
@@ -175,11 +175,11 @@ const current = new Date();
  
   return (
     <Container className="  w-75 pb-5">
-      <div className="pb-5 d-flex justify-content-between">
+      <div className="pb-5 d-sm-flex justify-content-between">
         <h2>{isUpdate ? "Edit Blog" : "Add New Blog"} </h2>
         <div>
         <Button className={`px-3 rounded  bg-success  float-end`} onClick={handleSubmit}>Save</Button>
-        <Button className={`px-3 rounded  bg-danger float-end me-5`} onClick={clear}>Discard</Button>
+        <Button className={`px-3 rounded  bg-danger float-end me-sm-5 me-2`} onClick={clear}>Discard</Button>
         </div>
         
       </div>
@@ -213,7 +213,7 @@ const current = new Date();
         
         /> 
 
-        <div className="d-sm-flex  my-4">
+        <div className="d-sm-flex  my-4 ">
           <div className=" w-100">
             <Card className="border border-4 border-white rounded bg-transparent ms-md-3 p-3 ">
               <CardTitle className="fs-5 fw-bold text-center">

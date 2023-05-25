@@ -18,7 +18,7 @@ return(
 <ListGroupItem className="my-4  mx-auto wid">
 <Card className="d-flex flex-md-row  rounded  border border-dark border-2 mx-auto mx-md-0 text-white" style={{backgroundColor : "rgba(0,0,0,0.5)"}}>
     
-    <img src={item[1].imageURL} alt="blog-image" title={item[1].blog_title} className=" border border-white border-2  rounded-end landimg mx-auto mx-md-0 mt-2 mt-md-0" />
+    <img src={item[1].imageURL} alt="blog-image" title={item[1].blog_title} className=" border border-white border-2 rounded-end landimg mx-auto mx-md-0 mt-2 mt-md-0" />
     <div className="ms-sm-5 my-md-auto mx-auto">
     <CardTitle className=" fw-bold  mt-2 fs-5 "
                     style={{ fontFamily: "inherit" }}>

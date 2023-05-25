@@ -74,4 +74,12 @@ body{
 .wid{
   width: 100% !important;
 }
+
+  }
+
+  @media screen and (max-width: 480px) {
+    .viewimg{
+      width: 350px;
+      height: 300px;
+    } 
   }

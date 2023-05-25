@@ -35,6 +35,7 @@ export function UserContextProvider({ children }) {
     }
   }, [token]);
 
+
   const login = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((res) => {

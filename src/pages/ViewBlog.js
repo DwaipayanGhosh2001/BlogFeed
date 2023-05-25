@@ -4,10 +4,11 @@ import { useUserRecord } from "../context/context";
 import { Container } from "reactstrap";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { ToggleStar } from "../Config/StoreData";
+import { toast } from "react-toastify";
 const ViewBlog = () => {
   const [data, setData] = useState(null);
   const [isClick, setIsClick] = useState(false);
-  const { blogs, displayBlog, isLike, setIsLike } = useUserRecord();
+  const { blogs, displayBlog, isLike, setIsLike, token } = useUserRecord();
   const { blogid } = useParams();
   const BlogDetails = () => {
     if (blogs && blogid) {
@@ -23,19 +24,24 @@ const ViewBlog = () => {
 
   const toggle = () => {
     
-    setIsClick(!isClick)
-    if(!isClick && data){
-      setIsLike({ blogid: blogid, likestatus: true });
-      const likes = data.likeCount+1;
-      ToggleStar(blogid, likes)
-      displayBlog();
+    if (token) {
+      setIsClick(!isClick)
+      if(!isClick && data){
+        setIsLike({ blogid: blogid, likestatus: true });
+        const likes = data.likeCount+1;
+        ToggleStar(blogid, likes)
+        displayBlog();
+      }
+      else{
+        setIsLike({ blogid: blogid, likestatus: false});
+        const likes = data.likeCount-1;
+        ToggleStar(blogid, likes)
+        displayBlog();
+      }
     }
-    else{
-      setIsLike({ blogid: blogid, likestatus: false});
-      const likes = data.likeCount-1;
-      ToggleStar(blogid, likes)
-      displayBlog();
-    }
+   else {
+    toast("User is not logged In", {type: "error"})
+   }
     
   };
  console.log(isLike)
@@ -62,7 +68,7 @@ const ViewBlog = () => {
               src={data.imageURL}
               alt="blog image"
               title={data.blog_title}
-              className="rounded-2 "
+              className="rounded-2 viewimg"
               style={{ maxWidth: "600px", maxHeight: "400px" }}
             />
           </div>
@@ -84,10 +90,11 @@ const ViewBlog = () => {
 
           <p className=" fst-italic fs-5">
             {isLike ? "Liked :": " Like :"}
-           {" "}
+           {blogid && (
             <span className="fs-2 ms-5" style={{ cursor: "pointer" }} onClick={toggle} >
-              {isLike.blogid === blogid && isLike.likestatus? <AiFillLike className="text-blue"/> : <AiOutlineLike />}
+              {isLike.blogid === blogid && isLike.likestatus? <AiFillLike className="text-blue"/> : <AiOutlineLike />} 
             </span>
+           )}
           </p>
 
           <h3>Comments</h3>
