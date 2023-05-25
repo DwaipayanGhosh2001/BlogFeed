@@ -97,7 +97,7 @@ const ViewBlog = () => {
            )}
           </p>
 
-          <h3>Comments</h3>
+          {/* <h3>Comments</h3> */}
 
         </div>
       )}

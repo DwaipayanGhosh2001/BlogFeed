@@ -78,7 +78,7 @@ navigate("/my-blogs")
 
 }
 
-const likes= [];
+const likeCount = 0;
 const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const navigate= useNavigate();
@@ -96,7 +96,7 @@ const current = new Date();
     } else {
       
       if (token && blog) {
-        BlogDetails(token, title, blog, image, meta, click, date, user.username, likes, navigate);
+        BlogDetails(token, title, blog, image, meta, click, date, user.username, likeCount, navigate);
         displayBlog();
       } else {
         alert("Incomplete details of the Blog");
@@ -172,7 +172,7 @@ const current = new Date();
     }
   };
 
- 
+ console.log(isUpdate, updateData)
   return (
     <Container className="  w-75 pb-5">
       <div className="pb-5 d-sm-flex justify-content-between">
@@ -204,14 +204,27 @@ const current = new Date();
           required
         />
         <h5 className="ms-md-3 py-3">Write your blog here</h5>
+        {isUpdate && updateData ? (
+          <div>
+             
          <ReactQuill
           ref={blogRef}
-            defaultValue={isUpdate && updateData ? updateData.blog_data : ''}
-            value={isUpdate && updateData && updateData.blog_data }
+          required
+          className="bg-white border-dark border border-1"
+        defaultValue={updateData && updateData.blog_data}
+        />
+          </div>
+        ) : (
+          <>
+           <ReactQuill
+          ref={blogRef}
           required
           className="bg-white border-dark border border-1"
         
         /> 
+          </>
+        )}
+        
 
         <div className="d-sm-flex  my-4 ">
           <div className=" w-100">
