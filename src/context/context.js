@@ -14,7 +14,7 @@ export function useUserRecord() {
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState({ blogid: "", likestatus: false});
   const [token, setToken] = useState(null);
  
   const[isUpdate, setIsUpdate] = useState(false);

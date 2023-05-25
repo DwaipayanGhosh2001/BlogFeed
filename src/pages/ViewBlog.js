@@ -6,7 +6,7 @@ import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { ToggleStar } from "../Config/StoreData";
 const ViewBlog = () => {
   const [data, setData] = useState(null);
-
+  const [isClick, setIsClick] = useState(false);
   const { blogs, displayBlog, isLike, setIsLike } = useUserRecord();
   const { blogid } = useParams();
   const BlogDetails = () => {
@@ -23,20 +23,23 @@ const ViewBlog = () => {
 
   const toggle = () => {
     
-    setIsLike(!isLike);
-    if(!isLike && data){
+    setIsClick(!isClick)
+    if(!isClick && data){
+      setIsLike({ blogid: blogid, likestatus: true });
       const likes = data.likeCount+1;
       ToggleStar(blogid, likes)
       displayBlog();
     }
     else{
+      setIsLike({ blogid: blogid, likestatus: false});
       const likes = data.likeCount-1;
       ToggleStar(blogid, likes)
       displayBlog();
     }
     
   };
- 
+ console.log(isLike)
+ console.log(isClick)
   return (
     <Container className="pt-3">
       {data && (
@@ -83,7 +86,7 @@ const ViewBlog = () => {
             {isLike ? "Liked :": " Like :"}
            {" "}
             <span className="fs-2 ms-5" style={{ cursor: "pointer" }} onClick={toggle} >
-              {isLike ? <AiFillLike className="text-blue"/> : <AiOutlineLike />}
+              {isLike.blogid === blogid && isLike.likestatus? <AiFillLike className="text-blue"/> : <AiOutlineLike />}
             </span>
           </p>
 

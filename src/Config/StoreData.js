@@ -93,12 +93,10 @@ export async function ToggleStar(blogid, likes) {
         likeCount: likes
     }
     )
-     toast("Blog liked successfully", {type: "success"})
     
   } 
   catch (error) {
     console.log(error)
-    toast("Blog Update Failed",{type:"error"})
   }
 
 }

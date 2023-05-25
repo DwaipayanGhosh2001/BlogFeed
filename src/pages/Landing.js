@@ -12,7 +12,7 @@ return(
     <div>
  {blogs ?  (
         <Container>
-        <h1 className=" mt-3 mb-3"style={{fontFamily:"serif"}}>Latest Blog Feed</h1>
+        <h2 className=" mt-3 mb-3 ">Latest Blog Feed</h2>
 <Container >
     {blogs.map((item, index) => (
 <ListGroupItem className="my-4  mx-auto wid">
