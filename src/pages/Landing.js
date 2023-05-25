@@ -50,7 +50,7 @@ return(
         
     </CardBody>
     </div>
-    <Button className="my-auto rounded text-white border-3 border me-3 border-danger mx-auto" tag={Link} to={`blog-details/${item[0]}`} outline style={{backgroundColor:hover="transparent"}}>
+    <Button className="my-sm-auto rounded text-white border-3 border me-3 border-danger mx-auto mb-2 mb-sm-0 " tag={Link} to={`blog-details/${item[0]}`} outline style={{backgroundColor:hover="transparent"}}>
         Read More
     </Button>
 </Card> 

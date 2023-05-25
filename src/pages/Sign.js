@@ -31,7 +31,7 @@ const Sign = () => {
         <Card style={{boxShadow: "10px 10px 20px 5px black"}}>
           <CardTitle className="d-flex justify-content-between mb-0">
             <h3
-              className={`text-uppercase fw-bold px-5 mb-0 py-2 ${
+              className={`text-uppercase fw-bold px-sm-5 px-4 mb-0 py-2 ${
                 active === 1 ? "active" : ""
               }`}
               style={{ letterSpacing: "5px", cursor: "pointer" }}
@@ -40,7 +40,7 @@ const Sign = () => {
               register
             </h3>
             <h3
-              className={`text-uppercase fw-bold px-5 mb-0 py-2 ${
+              className={`text-uppercase fw-bold px-sm-5 px-4 mb-0 py-2 ${
                 active !== 1 ? "active" : ""
               }`}
               style={{ letterSpacing: "5px", cursor: "pointer" }}

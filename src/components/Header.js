@@ -58,7 +58,7 @@ function Header() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/"className={`ms-md-5 pr-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 1 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(1)}>Trending</NavLink>
+                <NavLink tag={Link} to="/"className={`ms-md-5 pr-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 1 ? 'text-decoration-underline': ''}`} onClick={()=> {navActive(1); toggle();}}>Trending</NavLink>
               </NavItem>
               {/* <NavItem>
                 <NavLink tag={Link} className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 2 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(2)}>Category</NavLink>
@@ -66,10 +66,10 @@ function Header() {
               {token && (
                 <>
                  <NavItem>
-                <NavLink tag={Link} to="/my-blogs" className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 3 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(3)}>My Blogs</NavLink>
+                <NavLink tag={Link} to="/my-blogs" className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 3 ? 'text-decoration-underline': ''}`} onClick={()=> {navActive(3); toggle();}}>My Blogs</NavLink>
               </NavItem>
               <NavItem>
-              <NavLink tag={Link} to="/add-blog" className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 4 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(4)}>Add Blog</NavLink>
+              <NavLink tag={Link} to="/add-blog" className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 4 ? 'text-decoration-underline': ''}`} onClick={()=> {navActive(4); toggle();}}>Add Blog</NavLink>
             </NavItem>
                 </>
                
