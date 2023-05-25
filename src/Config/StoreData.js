@@ -1,4 +1,4 @@
-import { ref, remove, set, update, get } from "firebase/database";
+import { ref, remove, set, update, get , runTransaction } from "firebase/database";
 import { database } from "../Firebase";
 import { v4 } from "uuid";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ export async function StoreUser (uid, name, email) {
 
 }
 
-export async function BlogDetails (uid, title, blog, image, meta ,genre, date, author , navigate) {
+export async function BlogDetails (uid, title, blog, image, meta ,genre, date, author , likeCount, navigate) {
    
     try {
         await set(ref(database, `blogs/`+v4()), {
@@ -26,7 +26,8 @@ export async function BlogDetails (uid, title, blog, image, meta ,genre, date, a
             meta_tag: meta,
             genre:genre,
             date:date,
-            author: author
+            author: author, 
+            likeCount: likeCount
         })
 navigate("/my-blogs")
          toast("Blog added successfully", {type: "success"})
@@ -80,3 +81,24 @@ try {
 //       // Handle the error appropriately
 //     }
 //   }
+
+
+export async function ToggleStar(blogid, likes) {
+
+  try {
+  const postRef = ref( database, 'blogs/' + blogid );
+  await update(postRef, 
+    {
+        
+        likeCount: likes
+    }
+    )
+     toast("Blog liked successfully", {type: "success"})
+    
+  } 
+  catch (error) {
+    console.log(error)
+    toast("Blog Update Failed",{type:"error"})
+  }
+
+}

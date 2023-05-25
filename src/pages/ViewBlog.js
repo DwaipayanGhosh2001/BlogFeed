@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import { useUserRecord } from "../context/context";
 import { Container } from "reactstrap";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { ToggleStar } from "../Config/StoreData";
 const ViewBlog = () => {
   const [data, setData] = useState(null);
-  const [isLike, setIsLike] = useState(false);
-  const { blogs } = useUserRecord();
+
+  const { blogs, displayBlog, isLike, setIsLike } = useUserRecord();
   const { blogid } = useParams();
   const BlogDetails = () => {
     if (blogs && blogid) {
@@ -16,11 +17,26 @@ const ViewBlog = () => {
   };
   useEffect(() => {
     BlogDetails();
+   
   }, [blogid]);
 
+
   const toggle = () => {
+    
     setIsLike(!isLike);
+    if(!isLike && data){
+      const likes = data.likeCount+1;
+      ToggleStar(blogid, likes)
+      displayBlog();
+    }
+    else{
+      const likes = data.likeCount-1;
+      ToggleStar(blogid, likes)
+      displayBlog();
+    }
+    
   };
+ 
   return (
     <Container className="pt-3">
       {data && (
@@ -42,7 +58,7 @@ const ViewBlog = () => {
             <img
               src={data.imageURL}
               alt="blog image"
-              title={data.blog_data}
+              title={data.blog_title}
               className="rounded-2 "
               style={{ maxWidth: "600px", maxHeight: "400px" }}
             />
@@ -64,11 +80,10 @@ const ViewBlog = () => {
           <p className=" mt-4 fs-5"> {data.blog_data}</p>
 
           <p className=" fst-italic fs-5">
-            {isLike ? "Read our other exciting Blogs": " Appreciate the Blog with a Like"}
+            {isLike ? "Liked :": " Like :"}
            {" "}
             <span className="fs-2 ms-5" style={{ cursor: "pointer" }} onClick={toggle} >
               {isLike ? <AiFillLike className="text-blue"/> : <AiOutlineLike />}
-              
             </span>
           </p>
 

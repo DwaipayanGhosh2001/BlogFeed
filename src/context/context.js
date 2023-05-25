@@ -14,8 +14,9 @@ export function useUserRecord() {
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLike, setIsLike] = useState(false);
   const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+ 
   const[isUpdate, setIsUpdate] = useState(false);
   const[blogs, setBlogs] =useState(null);
   const[selectBlog, setSelectBlog] = useState(null);
@@ -122,6 +123,7 @@ function updatebtnClick (blogid) {
   setIsUpdate(true)
   setSelectBlog(blogid)
 }
+
   const value = {
     login,
     register,
@@ -135,7 +137,7 @@ function updatebtnClick (blogid) {
     updatebtnClick,
     isUpdate,
     setIsUpdate,
-    selectBlog
+    selectBlog, isLike, setIsLike
     //loader
   };
 

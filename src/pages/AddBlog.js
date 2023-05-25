@@ -73,17 +73,12 @@ const clear = () => {
   if(isUpdate)
   {
     setIsUpdate(false);
-
-navigate("/my-blogs")
   }
-titleRef.current.value=null;
-blogRef.current.value=null;
-metaRef.current.value=null;
-setDownloadUrl(null);
-setClick([]);
+navigate("/my-blogs")
+
 }
 
-
+const likeCount = 0;
 const current = new Date();
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
   const navigate= useNavigate();
@@ -101,7 +96,7 @@ const current = new Date();
     } else {
       
       if (token && blog) {
-        BlogDetails(token, title, blog, image, meta, click, date, user.username,navigate);
+        BlogDetails(token, title, blog, image, meta, click, date, user.username, likeCount, navigate);
         displayBlog();
       } else {
         alert("Incomplete details of the Blog");
@@ -194,6 +189,7 @@ const current = new Date();
           type="text"
           placeholder="Title of the Blog"
             defaultValue={isUpdate && updateData ? updateData.blog_title : ""}
+           
           className="py-2 border-dark border border-1"
           innerRef={titleRef}
           required
@@ -211,6 +207,7 @@ const current = new Date();
          <ReactQuill
           ref={blogRef}
             defaultValue={isUpdate && updateData ? updateData.blog_data : ''}
+            value={isUpdate && updateData && updateData.blog_data }
           required
           className="bg-white border-dark border border-1"
         

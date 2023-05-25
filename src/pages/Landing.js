@@ -1,19 +1,20 @@
-import React from "react";
-import { Container, ListGroupItem, Card, CardBody, CardTitle, CardFooter, Button } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Container, ListGroupItem, Card, CardBody, CardTitle, CardFooter, Button, Spinner } from "reactstrap";
 import { useUserRecord } from "../context/context";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { Link } from "react-router-dom";
+import { AiFillLike } from "react-icons/ai";
 const Home = () =>
 {
     const {blogs} = useUserRecord();
-    console.log(blogs)
+ 
 return(
     <div>
  {blogs ?  (
         <Container>
-        <h1 className="text-center mt-5"style={{fontFamily:"serif"}}>Latest Blog Feed</h1>
+        <h1 className=" mt-3 mb-3"style={{fontFamily:"serif"}}>Latest Blog Feed</h1>
 <Container >
-    { blogs.map((item, index) => (
+    {blogs.map((item, index) => (
 <ListGroupItem className="my-4  mx-auto wid">
 <Card className="d-flex flex-md-row  rounded  border border-dark border-2 mx-auto mx-md-0 text-white" style={{backgroundColor : "rgba(0,0,0,0.5)"}}>
     
@@ -45,6 +46,7 @@ return(
         </div>
    
                     <p>{item[1].meta_tag}</p>
+                    <p className=""><AiFillLike/> {item[1].likeCount}</p>
         
     </CardBody>
     </div>
@@ -62,7 +64,10 @@ return(
     </Container>
     ): (
         <>
-        <h1>Loading...</h1>
+        
+        <h5 className="text-center mt-5 pt-5">
+        <Spinner className="me-3"/>
+            Loading...</h5>
         </>
     ) }
     </div>
