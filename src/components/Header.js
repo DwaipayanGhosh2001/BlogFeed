@@ -58,7 +58,7 @@ function Header() {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
-                <NavLink tag={Link} to="/"className={`ms-md-5 pr-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 1 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(1)}>Home</NavLink>
+                <NavLink tag={Link} to="/"className={`ms-md-5 pr-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 1 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(1)}>Trending</NavLink>
               </NavItem>
               {/* <NavItem>
                 <NavLink tag={Link} className={`px-md-3 text-dark fw-semibold text-uppercase zoom ${ active === 2 ? 'text-decoration-underline': ''}`} onClick={()=> navActive(2)}>Category</NavLink>
