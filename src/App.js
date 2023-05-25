@@ -14,6 +14,7 @@ import ViewBlog from "./pages/ViewBlog";
 import Footer from "./components/Footer";
 import { Container } from "reactstrap";
 import AuthPvtRoute from "./Routes/PrivateRoute";
+import NotFoundPage from "./pages/PageNotFound";
 const App = () =>
 {
 return(
@@ -33,6 +34,7 @@ return(
         <AddBlog/>
       </AuthPvtRoute>}/>
       <Route path="/blog-details/:blogid" element={<ViewBlog/>}/>
+      <Route exact path="*" element={<NotFoundPage/>} />
       
      </Routes>
       </div>
